@@ -17,13 +17,11 @@ import android.util.Log
 
 internal class MyAlarm : BroadcastReceiver() {
     lateinit var notificationManager:NotificationManager
-    lateinit var notificationchannel:NotificationChannel
+    lateinit var notificationChannel:NotificationChannel
     lateinit var builder:Notification.Builder
-    private val channelid= "com.example.jayghodasara.myapplication"
-    private val desc="test"
-    //the method will be fired when the alarm is triggerred
-    @SuppressLint("PrivateResource")
-    @RequiresApi(Build.VERSION_CODES.O)
+    private val channelId= "com.example.karshsoni.demosmsreceiverreadalarm"
+    private val text="test"
+   
     override fun onReceive(context: Context, intent: Intent) {
 
         //you can check the log that it is fired
@@ -38,13 +36,13 @@ internal class MyAlarm : BroadcastReceiver() {
 
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        notificationchannel = NotificationChannel(channelid, desc, NotificationManager.IMPORTANCE_HIGH)
-        notificationchannel.enableLights(true)
-        notificationchannel.lightColor = Color.BLUE
-        notificationchannel.enableVibration(false)
-        notificationManager.createNotificationChannel(notificationchannel)
+        notificationChannel = NotificationChannel(channelId, text, NotificationManager.IMPORTANCE_HIGH)
+        notificationChannel.enableLights(true)
+        notificationChannel.lightColor = Color.BLUE
+        notificationChannel.enableVibration(false)
+        notificationManager.createNotificationChannel(notificationChannel)
 
-        builder = Notification.Builder(context, channelid)
+        builder = Notification.Builder(context, channelId)
                 .setContentTitle("Alarm Ringing")
                 .setContentText("Ringing")
                 .setSmallIcon(R.drawable.notification_icon_background)
